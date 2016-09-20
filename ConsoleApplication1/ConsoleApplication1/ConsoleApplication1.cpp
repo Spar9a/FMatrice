@@ -9,7 +9,7 @@ using namespace std;
 void check()
 {
 	cin.clear();											//если это не так, очищаем ввод
-	cin.ignore(numeric_limits<streamsize>::max(), 'endl');	//игнорируем все символы до знака '\n'
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');	//игнорируем все символы до знака '\n'
 	cout << "Недопустимое значение!" << endl << "Попробуйте заново: ";   //выводим сообщение что ввели неверный символ и повторяем цикл, пока не введут верный символ
 }
 
