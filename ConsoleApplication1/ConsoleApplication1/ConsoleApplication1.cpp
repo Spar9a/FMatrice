@@ -85,8 +85,7 @@ int main()
 		for (i = 0; i < n; i++)
 		{
 			for (j = 0; j < m; j++)
-				printf("%-10g", matrix2
-					[i][j]);
+				printf("%-10g", matrix2[i][j]);
 			cout << endl;
 		}
 		cout << "Полученная матрица C:" << "C=A+B" << endl;
@@ -256,11 +255,10 @@ int main()
 		for (i = 0; i < n; i++)
 		{
 			for (j = 0; j < m; j++)
-				printf("%-7g", matrix2
-					[i][j]);
+				printf("%-10g", matrix2[i][j]);
 			cout << endl;
 		}
-		cout << "Полученная матрица C: " << "C+=A*B" << endl;
+		cout << "Полученная матрица C: " << "C=A*B" << endl;
 		double **matrix3 = new double *[n];
 		for (i = 0; i < n; i++)
 			matrix3[i] = new double[m];
