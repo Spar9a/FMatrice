@@ -18,7 +18,7 @@ int main()
 	setlocale(LC_ALL, "Russian"); // add locale language
 	cout << "Здравствуй, я помогу тебе решить матрицу." << endl; // Добавил перенос строки
 	int method;
-	cout << "Выбери действие которое ты хочешь осуществить с матрицой." << endl << "Введи цифру (1) для сложения матриц, цифру (2) для вычитания, (3) умножение, (4) траспонирование." << endl;
+	cout << "Выбери действие которое ты хочешь осуществить с матрицой." << endl << "Введи цифру (1) для сложения матриц, (2) вычитание, (3) умножение, (4) траспонирование." << endl;
 	cin >> method;
 	while (method < 1 || method > 4) // Цикл который заставляет выбрать один из методов 
 	{
@@ -43,7 +43,7 @@ int main()
 		for (i = 0; i < n; i++)
 			matrix1[i] = new double[m];
 		// Заполняем нашу матрицу
-		cout << "Введите элементы матрицы A.";
+		cout << "Введите элементы матрицы A.\n";
 		for (i = 0; i < n; i++)
 		{
 			for (j = 0; j < m; j++)
@@ -68,7 +68,7 @@ int main()
 		for (i = 0; i < n; i++)
 			matrix2[i] = new double[m];
 		// Заполняем нашу матрицу
-		cout << "Введите элементы матрицы B.";
+		cout << "Введите элементы матрицы B.\n";
 		for (i = 0; i < n; i++)
 		{
 			for (j = 0; j < m; j++)
@@ -99,7 +99,7 @@ int main()
 			{
 				matrix3[i][j] = 0;
 				matrix3[i][j] = matrix1[i][j] + matrix2[i][j];
-				printf("%10.g", matrix3[i][j]);
+				printf("%-10g", matrix3[i][j]);
 			}
 			cout << "\n";
 		}
@@ -123,7 +123,7 @@ int main()
 		for (i = 0; i < n; i++)
 			matrix1[i] = new double[m];
 		// Заполняем нашу матрицу
-		cout << "Введите элементы матрицы A.";
+		cout << "Введите элементы матрицы A.\n";
 		for (i = 0; i < n; i++)
 		{
 			for (j = 0; j < m; j++)
@@ -148,7 +148,7 @@ int main()
 		for (i = 0; i < n; i++)
 			matrix2[i] = new double[m];
 		// Заполняем нашу матрицу
-		cout << "Введите элементы матрицы B.";
+		cout << "Введите элементы матрицы B.\n";
 		for (i = 0; i < n; i++)
 		{
 			for (j = 0; j < m; j++)
@@ -179,14 +179,14 @@ int main()
 			{
 				matrix3[i][j] = 0;
 				matrix3[i][j] = matrix1[i][j] - matrix2[i][j];
-				printf("%10.g", matrix3[i][j]);
+				printf("%-10g", matrix3[i][j]);
 			}
 			cout << "\n";
 		}
 	}
 	else if (method == 3)
 	{
-		cout << "Ты выбрал умножение матриц!" << endl;
+		cout << "Вы выбрали умножение матриц!" << endl;
 		cout << "Введите размерность матрицы A. \n";
 		int i, j, n, m;
 		cout << "Столбцы: ";
@@ -203,7 +203,7 @@ int main()
 		for (i = 0; i < n; i++)
 			matrix1[i] = new double[m];
 		// Заполняем нашу матрицу
-		cout << "Введите элементы матрицы A.";
+		cout << "Введите элементы матрицы A.\n";
 		for (i = 0; i < n; i++)
 		{
 			for (j = 0; j < m; j++)
@@ -239,7 +239,7 @@ int main()
 		for (i = 0; i < n; i++)
 			matrix2[i] = new double[m];
 		// Заполняем нашу матрицу
-		cout << "Введите элементы матрицы B.";
+		cout << "Введите элементы матрицы B.\n";
 		for (i = 0; i < n; i++)
 		{
 			for (j = 0; j < m; j++)
@@ -271,7 +271,7 @@ int main()
 				matrix3[i][j] = 0;
 				for (int k = 0; k<n; k++) 
 					matrix3[i][j] += matrix1[i][k] * matrix2[k][j];
-					cout << matrix3[i][j] << " ";
+				printf("%-10g", matrix3[i][j]);
 			}
 			cout << "\n";
 		}
