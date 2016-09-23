@@ -181,8 +181,7 @@ int main()
 		for (i = 0; i < string_x; i++)
 		{
 			for (j = 0; j < column_y; j++)
-				printf("%-10g", matrix2
-					[i][j]);
+				printf("%-10g", matrix2[i][j]);
 			cout << endl;
 		}
 		cout << "Полученна матрица C: " << "C=A-B" << endl;
