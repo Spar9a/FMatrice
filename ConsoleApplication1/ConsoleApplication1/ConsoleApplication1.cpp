@@ -205,7 +205,7 @@ int main()
 	{
 		cout << "Вы выбрали умножение матриц!" << endl;
 		cout << "Введите размерность матрицы A." << endl;
-		int i, j, n, m;
+		int c,v;
 		cout << "Столбцы: ";
 		//Начало проверки вводимых символов
 		while (!(cin >> n)) {										//Проверяем условие, что вводимые символы соотвествуют типу n
@@ -246,24 +246,32 @@ int main()
 		cout << "Введите размерность матрицы B." << endl;
 		cout << "Столбцы: ";
 		//Начало проверки вводимых символов
-		while (!(cin >> n)) {										//Проверяем условие, что вводимые символы соотвествуют типу n
+		while (!(cin >> c)) {										//Проверяем условие, что вводимые символы соотвествуют типу n
 			check();
 		}
-		check_n();
+		while (c < 1 || c > 100) // Цикл заставляющий ввести значения не меньше 1 и не больше 100
+		{
+			cout << "Недопустимая размерность матрицы, повтори ввод ещё раз" << endl << "Кол-во столбцов" << endl;
+			cin >> c;
+		}
 		//Конец проверки вводимых символов
 		cout << "Строки: ";
-		while (!(cin >> m)) {
+		while (!(cin >> v)) {
 			check();
 		}
-		check_m();
-		double **matrix2 = new double *[n];
-		for (i = 0; i < n; i++)
-			matrix2[i] = new double[m];
+		while (v < 1 || v > 100) // Цикл заставляющий ввести значения не меньше 1 и не больше 100
+		{
+			cout << "Недопустимая размерность матрицы, повтори ввод ещё раз" << endl << "Кол-во столбцов" << endl;
+			cin >> v;
+		}
+		double **matrix2 = new double *[c];
+		for (i = 0; i < c; i++)
+			matrix2[i] = new double[v];
 		// Заполняем нашу матрицу
 		cout << "Введите элементы матрицы B." << endl;
-		for (i = 0; i < n; i++)
+		for (i = 0; i < c; i++)
 		{
-			for (j = 0; j < m; j++)
+			for (j = 0; j < v; j++)
 			{
 				cout << "Элемент " << '[' << i + 1 << ";" << j + 1 << "]: ";
 				while (!(cin >> matrix2[i][j])) {
@@ -274,22 +282,24 @@ int main()
 		}
 		//Выводи матрицу
 		cout << "Матрица B:" << endl;
-		for (i = 0; i < n; i++)
+		for (i = 0; i < c; i++)
 		{
-			for (j = 0; j < m; j++)
+			for (j = 0; j < v; j++)
 				printf("%-10g", matrix2[i][j]);
 			cout << endl;
 		}
 		cout << "Полученна матрица C: " << "C=A*B" << endl;
-		double **matrix3 = new double *[n];
-		for (i = 0; i < n; i++)
+		double **matrix3 = new double *[c];
+		for (i = 0; i < c; i++)
 			matrix3[i] = new double[m];
-		for (i = 0; i < n; i++)
+		i = c;
+		j = m;
+		for (i = 0; i < c; i++)
 		{
 			for (j = 0; j < m; j++)
 			{
 				matrix3[i][j] = 0;
-				for (int k = 0; k<n; k++)
+				for (int k = 0; k<c; k++)
 					matrix3[i][j] += matrix1[i][k] * matrix2[k][j];
 				printf("%-10g", matrix3[i][j]);
 			}
@@ -298,6 +308,58 @@ int main()
 	}
 	else {
 		cout << "Вы выбрали транспонирование матрицы!" << endl;
+		cout << "Введите размерность матрицы ." << endl;
+		int i, j, n, m;
+		cout << "Столбцы: ";
+		//Начало проверки вводимых символов
+		while (!(cin >> n)) {										//Проверяем условие, что вводимые символы соотвествуют типу n
+			check();
+		}
+		//Конец проверки вводимых символов
+		cout << "Строки: ";
+		while (!(cin >> m)) {
+			check();
+		}
+		double **matrix1 = new double *[n];
+		for (i = 0; i < n; i++)
+			matrix1[i] = new double[m];
+		// Заполняем нашу матрицу
+		cout << "Введите элементы матрицы A." << endl;
+		for (i = 0; i < n; i++)
+		{
+			for (j = 0; j < m; j++)
+			{
+				cout << "Элемент " << '[' << i + 1 << ";" << j + 1 << "]: ";
+				while (!(cin >> matrix1[i][j])) {
+					check();
+				}
+			}
+
+		}
+		//Выводи матрицу
+		cout << "Матрица A:" << endl;
+		for (i = 0; i < n; i++)
+		{
+			for (j = 0; j < m; j++)
+				printf("%-10g", matrix1[i][j]);
+			cout << endl;
+		}
+		cout << "Выводим матрицу" << endl;
+		//============================================================================================================
+
+		double **matrix2 = new double *[n];
+		for (i = 0; i < n; i++)
+			matrix2[i] = new double[m];
+		for (i = 0; i < m; i++)
+		{
+			for (j = 0; j < n; j++)
+			{
+				matrix2[i][j] = 0;
+				matrix2[i][j] = matrix1[j][i];
+				printf("%-10g", matrix2[i][j]);
+			}
+			cout << endl;
+		}
 	}
 	system("pause");
 	return 0;
