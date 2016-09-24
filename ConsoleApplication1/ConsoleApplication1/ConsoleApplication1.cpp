@@ -6,6 +6,7 @@
 #include <math.h>
 using namespace std;
 int i, j, string_x, column_y, string_n, column_m;
+
 void check_x() {
 	while (string_x < 1 || string_x > 100) // Цикл заставляющий ввести значения не меньше 1 и не больше 100
 	{
@@ -24,10 +25,50 @@ void check_y() {
 void check()
 {
 	cin.clear();											//если это не так, очищаем ввод
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');	//игнорируем все символы до знака '\string_x'
+	cin.ignore();	//игнорируем все символы до знака '\string_x'
 	cout << "Недопустимое значение!" << endl << "Попробуйте заново: ";   //выводим сообщение что ввели неверный символ и повторяем цикл, пока не введут верный символ
 }
+void input()
+{
+	while (!(cin >> string_x)) {										//Проверяем условие, что вводимые символы соотвествуют типу string_x
+		check();
+	}
+	check_x();
+	//Конец проверки вводимых символов
+	cout << "Строки: ";
+	while (!(cin >> column_y)) {
+		check();
+	}
+	check_y();
+}
+/*double getMatrix1(){
+	double **matrix1 = new double *[string_x];
+    for (i = 0; i < string_x; i++)
+	matrix1[i] = new double[column_y];
+	return matrix1[string_x][column_y];
+}
+double matrix_input(double** matrix1, int i, int j)
+{ 
+	double **matrix1 = new double *[string_x];
+	for (i = 0; i < string_x; i++)
+		matrix1[i] = new double[column_y];
+	return matrix1[string_x][column_y]
 
+	int n, m;
+	for (n = 0; n < i; n++)
+	{
+		for (m = 0; m < j; m++)
+		{
+			cout << "Элемент " << '[' << n + 1 << ";" << m + 1 << "]: ";
+			while (!(cin >> matrix1[n][m])) {
+				check();
+			}
+		}
+
+	}
+}
+
+*/
 int main()
 {
 	setlocale(LC_ALL, "Russian"); // add locale language
@@ -45,21 +86,13 @@ int main()
 		cout << "Введите размерность матрицы A." << endl;
 		cout << "Столбцы: ";
 		//Начало проверки вводимых символов
-		while (!(cin >> string_x)) {										//Проверяем условие, что вводимые символы соотвествуют типу string_x
-			check();
-		}
-		check_x();
-		//Конец проверки вводимых символов
-		cout << "Строки: ";
-		while (!(cin >> column_y)) {
-			check();
-		}
-		check_y();
+		input();
 		double **matrix1 = new double *[string_x];
 		for (i = 0; i < string_x; i++)
 			matrix1[i] = new double[column_y];
 		// Заполняем нашу матрицу
 		cout << "Введите элементы матрицы A." << endl;
+		
 		for (i = 0; i < string_x; i++)
 		{
 			for (j = 0; j < column_y; j++)
