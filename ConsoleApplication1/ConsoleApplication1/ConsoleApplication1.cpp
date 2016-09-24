@@ -81,23 +81,37 @@ double** matrix_input(double** matrix1, int i, int j)
 	}
 	return matrix1;
 }
-double** getMatrix1() {
+/*double** getMatrix1() {
 	double **matrix1 = new double *[string_x];
 	for (i = 0; i < string_x; i++)
 		matrix1[i] = new double[column_y];
 	return matrix1;
 }
 double** getMatrix2() {
-	double **matrix1 = new double *[string_n];
-	for (i = 0; i < string_n; i++)
-		matrix1[i] = new double[column_y];
+	double **matrix1 = new double *[string_x];
+	for (i = 0; i < string_x; i++)
+		matrix1[i] = new double[column_m];
 	return matrix1;
+} */
+double** getMatrix(int x, int y) {
+	double **matrix = new double *[x];
+	for (i = 0; i < x; i++)
+		matrix[i] = new double[y];
+	return matrix;
 }
-void output(double** matrix1) {
+
+int greater_value(int x, int y) {
+	if (x > y) {
+		return x;
+	}
+	else return y;
+	return x;
+}
+void output(double** matrix) {
 	 for (i = 0; i < string_x; i++)
 	 {
 		 for (j = 0; j < column_y; j++)
-			 printf("%-10g", matrix1[i][j]);
+			 printf("%-10g", matrix[i][j]);
 		 cout << endl;
 	 }
  }
@@ -108,6 +122,7 @@ void sum(double** matrix1, double** matrix2, double** matrix3) {
 		{
 			matrix3[i][j] = 0;
 			matrix3[i][j] = matrix1[i][j] + matrix2[i][j];
+			
 			printf("%-10g", matrix3[i][j]);
 		}
 		cout << endl;
@@ -126,12 +141,12 @@ void minys(double** matrix1, double** matrix2, double** matrix3) {
 	}
 }
 void multip(double** matrix1, double** matrix2, double** matrix3) {
-	for (i = 0; i < string_n; i++)
+	for (i = 0; i < string_x; i++)
 	{
-		for (j = 0; j < column_y; j++)
+		for (j = 0; j < column_m; j++)
 		{
 			matrix3[i][j] = 0;
-			for (int k = 0; k < string_n; k++)
+			for (int k = 0; k < string_x; k++)
 				matrix3[i][j] += matrix1[i][k] * matrix2[k][j];
 			printf("%-10g", matrix3[i][j]);
 		}
@@ -149,6 +164,7 @@ void transp(double** matrix1, double** matrix2) {																// Начало функц
 		cout << endl;
 	}
 }																												// Конец функции транспонирования
+
 int main()
 {
 	setlocale(LC_ALL, "Russian");																				// Изменение языка ввывода на русский
@@ -165,17 +181,17 @@ int main()
 		cout << "Вы выбрали сложение матриц!" << endl;
 		cout << "Введите размерность матрицы A." << endl;														
 		inputA();																								// Ввод размерности матрицы A, так же он используется и для матрицы B, так как при сложении матрицы должны быть одинаковыми.
-		double** matrix1 = matrix_input(getMatrix1(), string_x, column_y);										// Передача функции gerMatrix1() в которой уже инициализирован массив в функцию matrix_input. Результат matrix_input приравнивается к заданной переменной matrix1.
+		double** matrix1 = matrix_input(getMatrix(string_x, column_y), string_x, column_y);						// Передача функции gerMatrix1() в которой уже инициализирован массив в функцию matrix_input. Результат matrix_input приравнивается к заданной переменной matrix1.
 		cout << "Матрица A:" << endl;
 		output(matrix1);																						// Вывод массива ввиде таблицы
 																												
 		cout << "Введите элементы матрицы B." << endl;
-		double** matrix2 = matrix_input(getMatrix1(), string_x, column_y);
+		double** matrix2 = matrix_input(getMatrix(string_x, column_y), string_x, column_y);
 		cout << "Матрица B:" << endl;
 		output(matrix2);
 
 		cout << "Полученна матрица C:" << "C=A+B" << endl;
-		double** matrix3 = getMatrix1();																		// Инициализация новой массива matrix3
+		double** matrix3 = getMatrix(string_x, column_y);														// Инициализация новой массива matrix3
 		sum(matrix1, matrix2, matrix3);																			// Сложение матриц и вывод результата
 	}
 	else if (method == 2)																						// Начало операции вычитания
@@ -183,17 +199,17 @@ int main()
 		cout << "Вы выбрали вычитание матриц!" << endl;
 		cout << "Введите размерность матрицы A." << endl;
 		inputA();																								// Ввод размерности матрицы A, так же он используется и для матрицы B, так как при сложении матрицы должны быть одинаковыми.
-		double** matrix1 = matrix_input(getMatrix1(), string_x, column_y);										// Передача функции gerMatrix1() в которой уже инициализирован массив в функцию matrix_input. Результат matrix_input приравнивается к заданной переменной matrix1.
+		double** matrix1 = matrix_input(getMatrix(string_x, column_y), string_x, column_y);						// Передача функции gerMatrix1() в которой уже инициализирован массив в функцию matrix_input. Результат matrix_input приравнивается к заданной переменной matrix1.
 		cout << "Матрица A:" << endl;
 		output(matrix1);																						// Вывод массива ввиде таблицы
 
 		cout << "Введите элементы матрицы B." << endl;
-		double** matrix2 = matrix_input(getMatrix1(), string_x, column_y);
+		double** matrix2 = matrix_input(getMatrix(string_x, column_y), string_x, column_y);
 		cout << "Матрица B:" << endl;
 		output(matrix2);
 
 		cout << "Полученна матрица C:" << "C=A+B" << endl;
-		double** matrix3 = getMatrix1();																		// Инициализация новой массива matrix3
+		double** matrix3 = getMatrix(string_x, column_y);														// Инициализация новой массива matrix3
 		minys(matrix1, matrix2, matrix3);																		// Вычитание матриц и вывод результата
 	}
 	else if (method == 3)																						// Начало операции умножения
@@ -201,18 +217,18 @@ int main()
 		cout << "Вы выбрали умножение матриц!" << endl;
 		cout << "Введите размерность матрицы A." << endl;
 		inputA();																								// Ввод размерности матрицы A
-		double** matrix1 = matrix_input(getMatrix1(), string_x, column_y);										// Передача функции gerMatrix1() в которой уже инициализирован массив в функцию matrix_input. Результат matrix_input приравнивается к заданной переменной matrix1.
+		double** matrix1 = matrix_input(getMatrix(string_x, column_y), string_x, column_y);						// Передача функции gerMatrix1() в которой уже инициализирован массив в функцию matrix_input. Результат matrix_input приравнивается к заданной переменной matrix1.
 		cout << "Матрица A:" << endl;
 		output(matrix1);																						// Вывод массива ввиде таблицы
 
 		cout << "Введите элементы матрицы B." << endl;
 		inputB();																								// Ввод размерности матрицы B
-		double** matrix2 = matrix_input(getMatrix2(), string_n, column_m);										// Передача функции gerMatrix2() в которой уже инициализирован массив в функцию matrix_input. Результат matrix_input приравнивается к заданной переменной matrix2.
+		double** matrix2 = matrix_input(getMatrix(string_n, column_m), string_n, column_m);						// Передача функции gerMatrix2() в которой уже инициализирован массив в функцию matrix_input. Результат matrix_input приравнивается к заданной переменной matrix2.
 		cout << "Матрица B:" << endl;
 		output(matrix2);																						// Вывод массива ввиде таблицы
 
 		cout << "Полученна матрица C:" << "C=A+B" << endl;
-		double** matrix3 = getMatrix2();																		// Инициализация новой массива matrix3
+		double** matrix3 = getMatrix(greater_value(string_x, string_n), greater_value(column_m, column_y));														// Инициализация новой массива matrix3
 		multip(matrix1, matrix2, matrix3);																		// Умножение матриц и вывод результата
 		
 	}
@@ -221,12 +237,12 @@ int main()
 		cout << "Вы выбрали транспонирование матрицы!" << endl;													
 		cout << "Введите размерность матрицы A." << endl;
 		inputA();																								// Ввод размерности матрицы
-		double** matrix1 = matrix_input(getMatrix1(), string_x, column_y);										// Передача функции gerMatrix1() в которой уже инициализирован массив в функцию matrix_input. Результат matrix_input приравнивается к заданной переменной matrix1.
+		double** matrix1 = matrix_input(getMatrix(string_x, column_y), string_x, column_y);						// Передача функции gerMatrix1() в которой уже инициализирован массив в функцию matrix_input. Результат matrix_input приравнивается к заданной переменной matrix1.
 		cout << "Матрица A:" << endl;
 		output(matrix1);																						// Вывод массива ввиде таблицы
 
 		cout << "Транспонированная матрица A." << endl;
-		double** matrix2 = getMatrix1();																		// Инициализация новой массива matrix2
+		double** matrix2 = getMatrix(string_x, column_y);														// Инициализация новой массива matrix2
 		transp(matrix1, matrix2);																				// Транспонирование матрицы и вывод результата
 	}
 	system("pause");
