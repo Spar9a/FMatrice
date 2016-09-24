@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <math.h>
-
 using namespace std;
-
 int i, j, string_x, column_y, string_n, column_m;
 
 void check()																									// Начало функции проверки
@@ -131,14 +129,13 @@ void minys(double** matrix1, double** matrix2, double** matrix3) {
 	}
 }
 void multip(double** matrix1, double** matrix2, double** matrix3) {
-	for (i = 0; i < string_n; i++)
+	for (i = 0; i < column_y; i++)
 	{
-		for (j = 0; j < column_y; j++)
+		for (j = 0; j < string_n; j++)
 		{
 			matrix3[i][j] = 0;
-			for (int k = 0; k < string_n; k++)
+			for (int k = 0; k < column_y; k++)
 				matrix3[i][j] += matrix1[i][k] * matrix2[k][j];
-			//	printf("%-20g", matrix3[i][j]);
 			cout << matrix3[i][j] << endl;
 		}
 		cout << endl;
