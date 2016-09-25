@@ -36,7 +36,7 @@ Stay what the step will be
 * Visual Studio Community 2015
 
 ## Authors
-
+* **
 * **Антон Парфенюк** - [Spar9a](https://github.com/Spar9a/)
 * **Влад Антонов** - [htr](https://github.com/HaTeReality)
 * **Даниил Ментяк** - [DanielVampire](https://github.com/DanielVampire)
