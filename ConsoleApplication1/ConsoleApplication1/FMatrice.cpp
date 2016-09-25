@@ -117,7 +117,7 @@ double** multip(double** matrix1, double** matrix2) {	// Функция умножения двух 
 }
 
 double** transp(double** matrix1) {	// Функция транспонировая матрицы. Меняет местами строки с колонками и возвращает результат
-	double** matrix2 = getMatrix(string_x, column_y);
+	double** matrix2 = getMatrix(column_y, string_x);
 	for (i = 0; i < column_y; i++)
 		for (j = 0; j < string_x; j++)
 			matrix2[i][j] = matrix1[j][i];
@@ -203,7 +203,7 @@ int main()
 
 		cout << "Транспонированная матрица A." << endl;
 		double** matrix2 = transp(matrix1);
-		output(matrix2, string_x, column_y);
+		output(matrix2, column_y, string_x);
 	}
 	system("pause");
 	return 0;
